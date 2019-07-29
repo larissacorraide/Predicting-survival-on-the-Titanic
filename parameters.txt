@@ -1,0 +1,8 @@
+Best parameters set found on development set (tree):
+{'criterion': 'entropy', 'max_depth': 3}
+
+Best parameters set found on development set (forest):
+{'criterion': 'gini', 'max_depth': 15, 'n_estimators': 50}
+
+Best parameters set found on development set (SVM):
+{'C': 500, 'degree': 2, 'kernel': 'poly'}

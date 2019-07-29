@@ -60,8 +60,8 @@ x_train, x_test, y_train, y_test = train_test_split(x,y, test_size = 0.35, rando
 # Parameter that we want to tune for each method.
 tuned_parameters_tree = [{'criterion': ['gini','entropy'], 'max_depth': [1,2,3,4,5,6,7,8,9,10]}]
 tuned_parameters_forest = [{'n_estimators': [1,2,10,50,100,200], 'max_depth': [1,2,5,10,15],'criterion':['gini','entropy']}]
-tuned_parameters_SVM = [{'C': [0.001,0.1,1.0,10,100,500,750], 'kernel': ['linear', 'poly', 'rbf','sigmoid'],'degree':[1,2,3]}]
-scores = ['accuracy']
+tuned_parameters_SVM = [{'C': [0.001,0.1,1.0,10,100,500], 'kernel': ['linear', 'poly', 'rbf','sigmoid'],'degree':[1,2,3]}]
+scores = ['f1']
 
 
 # Trying to get the best parameters based on the precision score of the model.
