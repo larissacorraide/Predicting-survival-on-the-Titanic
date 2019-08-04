@@ -29,6 +29,10 @@ df_useful.loc[df_useful['Sex'] == 'female', 'Sex'] = 1
 mean = df_useful['Age'].mean()
 df_useful['Age'] = df_useful['Age'].fillna(mean)
 
+mean_Class = df_useful['Pclass'].mean()
+df_useful['Pclass'] = df_useful['Pclass'].fillna(mean_Class)
+
+
 x = df_useful.drop('Survived', axis = 1) # Input = Age, Sex, Pclass
 y= df_useful['Survived']                # Output = Surived or not
 
@@ -38,11 +42,12 @@ x = preprocessing.normalize(x)
 df_test = pd.read_csv('test.csv')
 #df_test = df_test.dropna() # remove null values
 
+print (df_test)
 #Pclass, Sex, Age to predict whether or not a passenger survived.
 df_useful_test = df_test[['Pclass', 'Sex', 'Age']] #Selecting the needed columns
 
-#mean = df_useful_test['Age'].mean()
-df_useful_test['Age'] = df_useful_test['Age'].fillna(mean)
+mean = df_useful_test['Age'].mean()
+df_useful_test['Age'] = df_useful_test['Age'].fillna(0)
 
 mean_Class = df_useful_test['Pclass'].mean()
 df_useful_test['Pclass'] = df_useful_test['Pclass'].fillna(mean_Class)
@@ -55,7 +60,7 @@ df_useful_test = preprocessing.normalize(df_useful_test)
 # Input = Age, Sex, Pclass
 
 
-x_train, x_test, y_train, y_test = train_test_split(x,y, test_size = 0.35, random_state= 0)
+x_train, x_test, y_train, y_test = train_test_split(x,y, test_size = 0.15, random_state= 0)
 
 # Parameter that we want to tune for each method.
 tuned_parameters_tree = [{'criterion': ['gini','entropy'], 'max_depth': [1,2,3,4,5,6,7,8,9,10]}]
@@ -67,13 +72,13 @@ scores = ['f1']
 # Trying to get the best parameters based on the precision score of the model.
 for score in scores:
 
-    model_tree = GridSearchCV(tree.DecisionTreeClassifier(), tuned_parameters_tree, cv=3, scoring='%s' % score, verbose=10)
+    model_tree = GridSearchCV(tree.DecisionTreeClassifier(), tuned_parameters_tree, cv=4, scoring='%s' % score, verbose=10)
     model_tree.fit(x_train, y_train) # Creating the decision tree model
 
-    model_forest = GridSearchCV(RandomForestClassifier(), tuned_parameters_forest, cv=3, scoring='%s' % score, verbose=10)
+    model_forest = GridSearchCV(RandomForestClassifier(), tuned_parameters_forest, cv=4, scoring='%s' % score, verbose=10)
     model_forest.fit(x_train, y_train) # Creating the random forest model
 
-    model_SVM = GridSearchCV(SVC(), tuned_parameters_SVM, cv=3, scoring='%s' % score, verbose=10)
+    model_SVM = GridSearchCV(SVC(), tuned_parameters_SVM, cv=4, scoring='%s' % score, verbose=10)
     model_SVM.fit(x_train, y_train) # Creating SVM model
 
 
