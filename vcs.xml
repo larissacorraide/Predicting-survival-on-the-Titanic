@@ -10,6 +10,14 @@
           <option name="url" value="https://github.com/larissacorraide/Predicting-survival-on-the-Titanic.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="git@github.com:larissacorraide/dew-harvesting-potential-in-the-Brazilian-territory.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/larissacorraide/dew-harvesting-potential-in-the-Brazilian-territory.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="L:\Data Science" />
